@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: src-postgres
+    environment:
+      POSTGRES_USER: shop
+      POSTGRES_PASSWORD: shop
+      POSTGRES_DB: shop
+    ports:
+      - "5433:5432"   # laptop 5433 -> container 5432, avoids clashing with other Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shop -d shop"]
+      interval: 10s
+      retries: 5
+
+  mongo:
+    image: mongo:7
+    container_name: src-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+  oracle:
+    image: gvenzl/oracle-free:23-slim-faststart
+    container_name: src-oracle
+    environment:
+      ORACLE_PASSWORD: oracle      # password for the admin users
+      APP_USER: shop               # creates a normal user for our data
+      APP_USER_PASSWORD: shop
+    ports:
+      - "1521:1521"
+    volumes:
+      - oradata:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 15s
+      retries: 20
+
+volumes:
+  pgdata:
+  mongodata:
+  oradata:
