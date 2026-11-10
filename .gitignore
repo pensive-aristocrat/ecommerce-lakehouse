@@ -7,3 +7,7 @@ spark-warehouse/
 metastore_db/
 derby.log
 
+scala_jobs/target/
+scala_jobs/project/target/
+scala_jobs/project/project/
+.bsp/
