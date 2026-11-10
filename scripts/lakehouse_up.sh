@@ -9,7 +9,7 @@ set -euo pipefail
 
 POLARIS=http://localhost:8181
 CATALOG=quickstart_catalog
-COMPOSE="docker compose -p lakehouse -f docker-compose.lakehouse.yml"
+COMPOSE="docker compose -p lakehouse -f docker-compose.lakehouse.yml -f docker-compose.trino.yml"
 
 cd "$(dirname "$0")/../docker"
 $COMPOSE down -v

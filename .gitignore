@@ -11,3 +11,6 @@ scala_jobs/target/
 scala_jobs/project/target/
 scala_jobs/project/project/
 .bsp/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/

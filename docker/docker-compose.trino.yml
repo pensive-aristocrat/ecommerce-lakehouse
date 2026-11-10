@@ -1,0 +1,11 @@
+services:
+  trino:
+    image: trinodb/trino:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./trino/catalog/lakehouse.properties:/etc/trino/catalog/lakehouse.properties:ro
+    mem_limit: 2g          # keep Trino from taking all of WSL's memory
+    depends_on:
+      polaris:
+        condition: service_healthy

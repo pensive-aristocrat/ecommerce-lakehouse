@@ -1,0 +1,13 @@
+lakehouse:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: dbt
+      host: localhost
+      port: 8080
+      http_scheme: http
+      database: lakehouse
+      schema: gold
+      threads: 4

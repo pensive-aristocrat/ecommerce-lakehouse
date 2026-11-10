@@ -1,0 +1,32 @@
+[0m00:06:32.768381 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d5760126bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d5760127e30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d5760127aa0>]}
+
+
+============================== 00:06:32.780593 | 50fbe1e3-a632-42a1-8194-dc8bf1d6f7d4 ==============================
+[0m00:06:32.780593 [info ] [MainThread]: Running with dbt=1.12.6
+[0m00:06:32.782981 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'warn_error': 'None', 'indirect_selection': 'eager', 'no_print': 'None', 'log_cache_events': 'False', 'hints_enabled': 'True', 'log_format': 'default', 'version_check': 'True', 'introspect': 'True', 'cache_selected_only': 'False', 'quiet': 'False', 'fail_fast': 'False', 'target_path': 'None', 'invocation_command': 'dbt docs generate --profiles-dir .', 'debug': 'False', 'write_json': 'True', 'partial_parse': 'True', 'profiles_dir': '.', 'printer_width': '80', 'log_path': 'logs', 'static_parser': 'True', 'use_experimental_parser': 'False', 'maximum_seed_size_mib': '1'}
+[0m00:06:32.784484 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /mnt/m/Ecommerce/ecommerce-lakehouse/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m00:06:32.787324 [debug] [MainThread]: Resource report: {"command_name": "generate", "command_success": false, "command_wall_clock_time": 0.12539767, "process_in_blocks": "44633", "process_kernel_time": 1.014098, "process_mem_max_rss": "124984", "process_out_blocks": "0", "process_user_time": 2.93289}
+[0m00:06:32.788880 [debug] [MainThread]: Command `dbt docs generate` failed at 00:06:32.788637 after 0.13 seconds
+[0m00:06:32.790339 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d575f7a8950>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d576510f3b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d575f91b8f0>]}
+[0m00:06:32.791627 [debug] [MainThread]: Flushing usage events
+[0m00:06:33.963466 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m00:06:48.898575 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b8dc8c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b887c9e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b887ca40>]}
+
+
+============================== 00:06:48.908930 | 8aa34311-25a4-4d48-aa13-26ec03d08163 ==============================
+[0m00:06:48.908930 [info ] [MainThread]: Running with dbt=1.12.6
+[0m00:06:48.910502 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt docs serve --profiles-dir . --port 8081', 'use_experimental_parser': 'False', 'fail_fast': 'False', 'no_print': 'None', 'log_cache_events': 'False', 'empty': 'None', 'quiet': 'False', 'hints_enabled': 'True', 'indirect_selection': 'eager', 'printer_width': '80', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '.', 'log_path': 'logs', 'write_json': 'True', 'debug': 'False', 'log_format': 'default', 'use_colors': 'True', 'target_path': 'None', 'static_parser': 'True', 'maximum_seed_size_mib': '1'}
+[0m00:06:48.911831 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /mnt/m/Ecommerce/ecommerce-lakehouse/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m00:06:48.914483 [debug] [MainThread]: Resource report: {"command_name": "serve", "command_success": false, "command_wall_clock_time": 0.13881345, "process_in_blocks": "34778", "process_kernel_time": 0.994084, "process_mem_max_rss": "124388", "process_out_blocks": "0", "process_user_time": 3.27463}
+[0m00:06:48.915953 [debug] [MainThread]: Command `dbt docs serve` failed at 00:06:48.915704 after 0.14 seconds
+[0m00:06:48.917586 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b887de20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b887fe30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7720b7ecf950>]}
+[0m00:06:48.918768 [debug] [MainThread]: Flushing usage events
+[0m00:06:50.090796 [debug] [MainThread]: An error was encountered while trying to flush usage events
