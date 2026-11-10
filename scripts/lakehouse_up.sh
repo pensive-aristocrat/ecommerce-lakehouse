@@ -2,15 +2,18 @@
 # Start the lakehouse storage layer (RustFS + Polaris) from a clean state,
 # then give the catalog_admin role permission to create and write tables.
 # The quickstart keeps Polaris's catalog in memory and its setup jobs only
-# succeed on a fresh start, so we reset first. This ERASES demo tables.
+# succeed on a fresh start, so we reset first. This ERASES lakehouse tables.
+# "-p lakehouse" gives this setup its own project name, so the reset never
+# touches the source databases.
 set -euo pipefail
 
 POLARIS=http://localhost:8181
 CATALOG=quickstart_catalog
+COMPOSE="docker compose -p lakehouse -f docker-compose.lakehouse.yml"
 
 cd "$(dirname "$0")/../docker"
-docker compose -f docker-compose.lakehouse.yml down -v
-docker compose -f docker-compose.lakehouse.yml up -d
+$COMPOSE down -v
+$COMPOSE up -d
 
 echo "Waiting for Polaris to accept logins..."
 TOKEN=""
@@ -37,4 +40,4 @@ curl -s -X PUT "$POLARIS/api/management/v1/catalogs/$CATALOG/catalog-roles/catal
   -d '{"grant":{"type":"catalog","privilege":"CATALOG_MANAGE_CONTENT"}}'
 echo "Granted CATALOG_MANAGE_CONTENT on $CATALOG to catalog_admin."
 
-docker compose -f docker-compose.lakehouse.yml ps -a
+$COMPOSE ps -a

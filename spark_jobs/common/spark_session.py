@@ -6,6 +6,9 @@ ICEBERG_VERSION = "1.10.1"
 PACKAGES = ",".join([
     f"org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:{ICEBERG_VERSION}",
     f"org.apache.iceberg:iceberg-aws-bundle:{ICEBERG_VERSION}",
+    "org.postgresql:postgresql:42.7.4",                     # PostgreSQL JDBC driver
+    "com.oracle.database.jdbc:ojdbc11:23.5.0.24.07",        # Oracle JDBC driver
+    "org.mongodb.spark:mongo-spark-connector_2.12:10.4.0",  # MongoDB connector
 ])
 
 
