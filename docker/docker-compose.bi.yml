@@ -1,0 +1,16 @@
+services:
+  superset:
+    build: ./superset                      # our small image: Superset + Trino driver
+    image: lakehouse-superset:6.0.0
+    ports:
+      - "8088:8088"
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}   # read from docker/.env, never from Git
+    volumes:
+      - supersethome:/app/superset_home    # dashboards and settings survive restarts
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # lets Superset reach Trino on your laptop
+    restart: unless-stopped
+
+volumes:
+  supersethome:
