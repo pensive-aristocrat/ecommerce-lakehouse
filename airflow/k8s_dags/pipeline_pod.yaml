@@ -1,0 +1,27 @@
+# Pod template for every pipeline task launched by Airflow on Kubernetes.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lakehouse-pipeline
+spec:
+  restartPolicy: Never
+  initContainers:
+    - name: s3-proxy                 # forwards localhost:9000 in the pod to RustFS on the laptop
+      image: alpine/socat:latest
+      restartPolicy: Always          # native sidecar: stops when the main container ends
+      args: ["TCP-LISTEN:9000,fork,reuseaddr", "TCP:host.docker.internal:9000"]
+  containers:
+    - name: base                     # the KubernetesPodOperator expects this exact name
+      image: lakehouse-pipeline:0.1
+      imagePullPolicy: Never
+      envFrom:
+        - configMapRef:
+            name: lakehouse-config
+        - secretRef:
+            name: lakehouse-secrets
+      resources:
+        requests:
+          cpu: "1"
+          memory: 1Gi
+        limits:
+          memory: 2Gi

@@ -1,0 +1,14 @@
+# Settings for the official Airflow Helm chart: small enough for a laptop.
+executor: LocalExecutor          # tasks run inside the scheduler; no Celery, no Redis
+
+redis:
+  enabled: false
+statsd:
+  enabled: false
+
+dags:
+  gitSync:                       # pull DAGs from GitHub every minute
+    enabled: true
+    repo: https://github.com/pensive-aristocrat/ecommerce-lakehouse.git
+    branch: main
+    subPath: airflow/k8s_dags
