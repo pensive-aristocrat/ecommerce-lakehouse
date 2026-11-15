@@ -1,0 +1,16 @@
+# Everything the Spark jobs need, except passwords (those go in a Secret).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pipeline
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lakehouse-config
+  namespace: pipeline
+data:
+  SOURCE_HOST: host.docker.internal
+  POLARIS_URI: http://host.docker.internal:8181/api/catalog
+  S3_ENDPOINT: http://host.docker.internal:9000
+  OPENLINEAGE_URL: http://host.docker.internal:5000

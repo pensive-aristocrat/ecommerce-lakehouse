@@ -2,6 +2,7 @@
 
 Run from the project root:  python -m spark_jobs.bronze.ingest_sources
 """
+import os
 import uuid
 from datetime import datetime, timezone
 
@@ -10,19 +11,23 @@ from pyspark.sql import functions as F
 
 from spark_jobs.common.spark_session import get_spark
 
+# Where the source databases are: "localhost" on the laptop,
+# "host.docker.internal" from inside a container.
+SOURCE_HOST = os.getenv("SOURCE_HOST", "localhost")
+
 POSTGRES = {
-    "url": "jdbc:postgresql://localhost:5433/shop",
+    "url": f"jdbc:postgresql://{SOURCE_HOST}:5433/shop",
     "user": "shop",
     "password": "shop",
     "driver": "org.postgresql.Driver",
 }
 ORACLE = {
-    "url": "jdbc:oracle:thin:@//localhost:1521/FREEPDB1",
+    "url": f"jdbc:oracle:thin:@//{SOURCE_HOST}:1521/FREEPDB1",
     "user": "shop",
     "password": "shop",
     "driver": "oracle.jdbc.OracleDriver",
 }
-MONGO_URI = "mongodb://root:root@localhost:27017/?authSource=admin"
+MONGO_URI = f"mongodb://root:root@{SOURCE_HOST}:27017/?authSource=admin"
 
 POSTGRES_TABLES = ["customers", "orders", "order_items", "products",
                    "product_category_translation"]

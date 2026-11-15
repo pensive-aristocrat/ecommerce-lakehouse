@@ -1,0 +1,10 @@
+.venv
+.git
+data
+dbt
+scala_jobs
+airflow
+notebooks
+docs
+k8s
+**/__pycache__

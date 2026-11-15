@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: bronze-ingest
+  namespace: pipeline
+spec:
+  backoffLimit: 1                  # retry a failed pod once
+  ttlSecondsAfterFinished: 3600    # clean up the finished job after an hour
+  template:
+    spec:
+      restartPolicy: Never
+      initContainers:
+        - name: s3-proxy                 # forwards localhost:9000 in the pod to RustFS on the laptop
+          image: alpine/socat:latest
+          restartPolicy: Always          # a "native sidecar": runs beside the job, stops when it ends
+          args: ["TCP-LISTEN:9000,fork,reuseaddr", "TCP:host.docker.internal:9000"]
+      containers:
+        - name: bronze
+          image: lakehouse-pipeline:0.1
+          imagePullPolicy: Never   # use the image loaded into kind, do not download
+          command: ["python3", "-m", "spark_jobs.bronze.ingest_sources"]
+          envFrom:
+            - configMapRef:
+                name: lakehouse-config
+            - secretRef:
+                name: lakehouse-secrets
+          resources:
+            requests:
+              cpu: "1"
+              memory: 1Gi
+            limits:
+              memory: 2Gi
